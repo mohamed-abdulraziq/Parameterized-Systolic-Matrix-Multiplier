@@ -1,12 +1,3 @@
-###############################################################################
-# Example timing constraints for systolic_array.
-#
-# These values match the example constraint set reflected in the supplied
-# synthesis timing reports. They are not a substitute for interface timing
-# requirements from a real integration environment. Review clock, I/O delays,
-# loads, transitions, and asynchronous-reset treatment before reuse.
-###############################################################################
-
 create_clock -name clk -period 10.000 [get_ports clk]
 set_clock_uncertainty 0.200 [get_clocks clk]
 
@@ -18,6 +9,3 @@ set_output_delay 1.000 -clock clk \
 
 set_input_transition 0.100 [all_inputs]
 set_load 0.010 [all_outputs]
-
-# rst_n is asynchronous in the RTL. Review whether it should be excluded from
-# ordinary synchronous I/O timing under the target sign-off methodology.
