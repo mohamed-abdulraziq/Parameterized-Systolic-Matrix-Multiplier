@@ -1,5 +1,11 @@
 # Functional Verification
 
+## Testbench development approach
+
+The verification plan was defined by the project author before testbench implementation. It specified the parameter configurations, directed and randomized scenarios, signed-arithmetic corner cases, back-to-back traffic, global-enable stalls, output stability checks, reset-stress situations, and expected results.
+
+AI assistance was used as a coding aid to translate parts of this author-defined plan into SystemVerilog testbench code. The RTL architecture and design decisions remain the project author's work. The generated testbench was used in the reported simulation regression, whose results are documented below.
+
 ## Regression structure
 
 The supplied final regression top is tb_systolic_array_final. It runs four back-to-back test configurations and a reset-stress test.
