@@ -69,7 +69,7 @@ For the largest functional configuration (DW=16, N_SIZE=7, K_MAX=28), the suppli
 
 The input count is exactly 95 × 28 beats, and the output count is exactly 95 × 7 rows. This establishes correct back-to-back transaction accounting under the generated random global stalls. The transcript does not report the complete elapsed cycle count for the test, so an observed sustained throughput in beats/s, matrices/s, or MAC/s cannot be calculated from this excerpt.
 
-## 5A. Aggregate arithmetic work in the four back-to-back regressions
+## 6. Aggregate arithmetic work in the four back-to-back regressions
 
 The four configured back-to-back tests cover the following MAC work:
 
@@ -83,10 +83,10 @@ The four configured back-to-back tests cover the following MAC work:
 
 This is the amount of arithmetic work represented by the verified matrix transactions, calculated from each configuration's dimensions and reduction length. It is not a measured operations-per-second result.
 
-## 6. Latency
+## 7. Latency
 
 End-to-end latency depends on the configured array dimension, the row/column skew, PE pipeline stages, and when the collector has captured a complete output row. The supplied regression validates functional ordering and stability but does not provide a dedicated measured input-to-first-row or input-to-matrix-done latency report. Accordingly, this repository documents the pipeline structure and steady-state rate rather than publishing an unsupported fixed cycle-latency number.
 
-## 7. Timing evidence
+## 8. Timing evidence
 
 The 5×5 synthesis setup report lists the critical paths from global_enable to PE product registers and reports a worst listed slack of 0.00 ns under the 10 ns example constraint. The hold report lists 20 paths, with the smallest displayed slack of +0.24 ns. This is pre-layout synthesis evidence; it is not routed timing or sign-off.
