@@ -23,25 +23,18 @@ module skew_network #(
     output logic first_out [N_SIZE-1:0],
     output logic last_out [N_SIZE-1:0]
 );
-
-    // =====================================================
+    
     // 1. A DATA SKEW
-    // =====================================================
-
     genvar i;
 
     generate
         for (i = 0; i < N_SIZE; i = i + 1) begin : A_DATA_SKEW
-
             if (i == 0) begin : NO_DELAY
-
                 assign a_out[i] = a_in[i];
-
             end
             else begin : DELAY_LINE
-
+                
                 logic signed [DW-1:0] a_pipe [i-1:0];
-
                 integer k;
 
                 always_ff @(posedge clk or negedge rst_n) begin
@@ -50,9 +43,7 @@ module skew_network #(
                             a_pipe[k] <= '0;
                     end
                     else if (global_enable) begin
-
                         a_pipe[0] <= a_in[i];
-
                         for (k = 1; k < i; k = k + 1)
                             a_pipe[k] <= a_pipe[k-1];
                     end
@@ -61,26 +52,18 @@ module skew_network #(
             end
         end
     endgenerate
-
-
-    // =====================================================
+    
     // 2. B DATA SKEW
-    // =====================================================
-
     genvar j;
 
     generate
         for (j = 0; j < N_SIZE; j = j + 1) begin : B_DATA_SKEW
-
             if (j == 0) begin : NO_DELAY
-
                 assign b_out[j] = b_in[j];
-
             end
             else begin : DELAY_LINE
-
+                
                 logic signed [DW-1:0] b_pipe [j-1:0];
-
                 integer k;
 
                 always_ff @(posedge clk or negedge rst_n) begin
@@ -101,31 +84,22 @@ module skew_network #(
         end
     endgenerate
 
-
-    // =====================================================
     // 3. CONTROL SKEW
-    // =====================================================
-
     genvar r;
-
+    
     generate
         for (r = 0; r < N_SIZE; r = r + 1) begin : CONTROL_SKEW
-
             if (r == 0) begin : NO_DELAY
-
                 assign valid_out[r] = valid_in;
                 assign first_out[r] = first_in;
                 assign last_out[r]  = last_in;
-
             end
             else begin : DELAY_LINE
-
                 logic valid_pipe [r-1:0];
                 logic first_pipe [r-1:0];
                 logic last_pipe  [r-1:0];
-
+                
                 integer k;
-
                 always_ff @(posedge clk or negedge rst_n) begin
                     if (!rst_n) begin
                         for (k = 0; k < r; k = k + 1) begin
@@ -153,5 +127,4 @@ module skew_network #(
             end
         end
     endgenerate
-
 endmodule
