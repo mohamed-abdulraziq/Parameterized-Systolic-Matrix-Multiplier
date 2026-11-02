@@ -21,47 +21,29 @@ module output_collector #(
     output logic valid_out,
     output logic matrix_done
 );
-
-    // =================================================
     // Internal Storage
-    // =================================================
-
     logic signed [ACC_WIDTH-1:0] result_buffer [N_SIZE-1:0][N_SIZE-1:0];
-
     logic [N_SIZE-1:0] row_valid [N_SIZE-1:0];
-
     logic [N_SIZE-1:0] row_complete;
-
     logic [ROW_IDX_WIDTH-1:0] read_ptr;
-
     integer comb_j;
     integer seq_i, seq_j;
-
-    // =================================================
+    
     // Row Completion Detection
-    // =================================================
-
     genvar r;
 
     generate
         for (r = 0; r < N_SIZE; r = r + 1) begin : ROW_CHECK
-
             assign row_complete[r] = &row_valid[r];
-
         end
     endgenerate
-
-    // =================================================
+    
     // Output Logic
-    // =================================================
-
     always_comb begin
         valid_out = 1'b0;
         row_index = read_ptr;
-
         for (comb_j = 0; comb_j < N_SIZE; comb_j = comb_j + 1)
             matrix_c_out[comb_j] = '0;
-
         if (row_complete[read_ptr]) begin
             valid_out = 1'b1;
             for (comb_j = 0; comb_j < N_SIZE; comb_j = comb_j + 1)
@@ -69,10 +51,7 @@ module output_collector #(
         end
     end
 
-    // =================================================
     // Capture + Output Control
-    // =================================================
-
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             read_ptr    <= '0;
@@ -86,9 +65,7 @@ module output_collector #(
 
         else if (global_enable) begin
             matrix_done <= 1'b0;
-            // -----------------------------------------
             // Release consumed row
-            // -----------------------------------------
             if (valid_out) begin
                 row_valid[read_ptr] <= '0;
                 if (read_ptr == N_SIZE-1) begin
@@ -99,9 +76,7 @@ module output_collector #(
                     read_ptr <= read_ptr + 1'b1;
                 end
             end
-            // -----------------------------------------
             // Capture incoming PE results
-            // -----------------------------------------
             for (seq_i = 0; seq_i < N_SIZE; seq_i = seq_i + 1) begin
                 for (seq_j = 0; seq_j < N_SIZE; seq_j = seq_j + 1) begin
                     if (pe_result_valid[seq_i][seq_j]) begin
