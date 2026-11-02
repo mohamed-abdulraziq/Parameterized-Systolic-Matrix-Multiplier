@@ -1,5 +1,4 @@
 ###############################################################################
-# Design Compiler synthesis script template
 # Project: Parameterized Output-Stationary Systolic Matrix Multiplier
 # Top: systolic_array
 #
