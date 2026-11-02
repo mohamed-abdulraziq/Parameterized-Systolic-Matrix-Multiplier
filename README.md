@@ -45,6 +45,10 @@ See [Architecture and Dataflow](docs/architecture.md) for the PE microarchitectu
 
 The configured accumulator width must be sufficient for the maximum supported reduction length. The tested configurations include both K=N and K>N.
 
+## AI-assisted development disclosure
+
+The verification strategy, test scenarios, parameter configurations, corner cases, and expected behavior were defined by the project author. AI assistance was used as a development aid to translate parts of that plan into SystemVerilog testbench code. The resulting testbench was then used for the reported simulation regression. The AI assistance was limited to testbench implementation support; it does not change the authorship of the RTL architecture and design decisions.
+
 ## Functional verification
 
 The supplied final regression runs four back-to-back configurations (95 matrices per configuration) and a reset-stress test.
