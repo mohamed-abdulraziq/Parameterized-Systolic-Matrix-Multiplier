@@ -19,5 +19,6 @@
 
 Area is expressed in the technology library's area units, not mm². The report states that no wire-load model was specified, so net interconnect area and total physical area are undefined. Buffer/inverter area is included in combinational area and must not be added again.
 
-Hierarchically, the PE array accounts for 90.4% of total mapped cell area (470,475.2600 library area units), while the output collector accounts for 7.1% (36,846.0071 units). This confirms that the replicated PE datapaths dominate the synthesized area in the 5×5 configuration.\n\nThe report is for the 5×5 default
+Hierarchically, the PE array accounts for 90.4% of total mapped cell area (470,475.2600 library area units), while the output collector accounts for 7.1% (36,846.0071 units). This confirms that the replicated PE datapaths dominate the synthesized area in the 5×5 configuration.
+The report is for the 5×5 default
 synthesis configuration. It is not an area result for the 7×7, K=28 simulation configuration.
