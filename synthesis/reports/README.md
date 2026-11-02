@@ -2,11 +2,15 @@
 
 The supplied Design Compiler report set corresponds to systolic_array with DW=16, N_SIZE=5, K_MAX=5, and ACC_WIDTH=35.
 
-- [Area, cell counts, and mapped area](../../docs/synthesis.md#area)
-- [Setup timing and critical path](../../docs/synthesis.md#setup-timing)
-- [Hold timing](../../docs/synthesis.md#hold-timing)
-- [Power estimate](../../docs/synthesis.md#power-estimate)
-- [Design checks](../../docs/synthesis.md#design-checks)
-- [Throughput derivation](../../docs/performance.md)
+## Report snapshots
 
-The public repository contains reviewed, text-based summaries rather than raw reports. The source reports include machine-specific absolute paths and licensed technology-library identifiers. The reported numbers and relevant limitations are retained in the documentation.
+- [Area and mapped cell statistics](area.md)
+- [Setup and hold timing](timing.md)
+- [Power estimate](power.md)
+- [Design checks and reported findings](design_checks.md)
+
+## Interpretation
+
+Area is reported in technology-library units, not mm². The report has no wire-load model. Setup slack reaches 0.00 ns on the worst listed path under the 10 ns example constraint. The hold report is limited to the 20 paths listed. Power is a low-effort estimate with incomplete activity annotation. The check-design findings are disclosed in the separate report.
+
+The public repository contains reviewed report snapshots rather than raw reports. The source reports include machine-specific absolute paths and licensed technology-library identifiers; these have been excluded from the public copy. The numerical results and relevant limitations are retained.
