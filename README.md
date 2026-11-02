@@ -109,7 +109,7 @@ Area is in technology-library units, not mm². The report has no wire-load model
 
 The critical setup paths start at global_enable and reach PE product registers through the multiplier/control cone. The design-check report lists 35 feedthrough ports, two cells that do not drive nets, and 175 unloaded nets; many unloaded nets are edge-of-array forwarding/control signals. These checks are documented rather than presented as a warning-free result.
 
-See [Synthesis and Timing Results](docs/synthesis.md).
+See [Synthesis and Timing Results](docs/synthesis.md), with individual [area](synthesis/reports/area.md), [timing](synthesis/reports/timing.md), [power](synthesis/reports/power.md), and [design-check](synthesis/reports/design_checks.md) summaries.
 
 ## Repository structure
 
@@ -149,7 +149,7 @@ vlog -sv verification/systolic_array_tb.sv verification/systolic_b2b_test_wrappe
 vsim -c work.tb_systolic_array_final -do "run -all; quit -f"
 ~~~
 
-The wrapper maps the test module name expected by the final regression top to the back-to-back test module name declared in the supplied testbench. The original testbench logic is preserved. The regression transcript was supplied with the project; it was not independently rerun while preparing this repository.
+The wrapper maps the test module name expected by the final regression top to the back-to-back test module name declared in the supplied testbench. The original testbench logic is preserved. The project regression run completed with all four parameter configurations passing and the reset-stress test passing. The checked-in testbench and wrapper provide the corresponding reproducible simulation setup.
 
 ## Synthesis
 
