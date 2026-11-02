@@ -69,6 +69,20 @@ For the largest functional configuration (DW=16, N_SIZE=7, K_MAX=28), the suppli
 
 The input count is exactly 95 × 28 beats, and the output count is exactly 95 × 7 rows. This establishes correct back-to-back transaction accounting under the generated random global stalls. The transcript does not report the complete elapsed cycle count for the test, so an observed sustained throughput in beats/s, matrices/s, or MAC/s cannot be calculated from this excerpt.
 
+## 5A. Aggregate arithmetic work in the four back-to-back regressions
+
+The four configured back-to-back tests cover the following MAC work:
+
+| Configuration | Matrices | MACs per matrix | MACs checked |
+|---|---:|---:|---:|
+| 1×1, K=1 | 95 | 1 | 95 |
+| 2×2, K=3 | 95 | 12 | 1,140 |
+| 5×5, K=5 | 95 | 125 | 11,875 |
+| 7×7, K=28 | 95 | 1,372 | 130,340 |
+| **Total** | **380** | — | **143,450** |
+
+This is the amount of arithmetic work represented by the verified matrix transactions, calculated from each configuration's dimensions and reduction length. It is not a measured operations-per-second result.
+
 ## 6. Latency
 
 End-to-end latency depends on the configured array dimension, the row/column skew, PE pipeline stages, and when the collector has captured a complete output row. The supplied regression validates functional ordering and stability but does not provide a dedicated measured input-to-first-row or input-to-matrix-done latency report. Accordingly, this repository documents the pipeline structure and steady-state rate rather than publishing an unsupported fixed cycle-latency number.
