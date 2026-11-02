@@ -34,7 +34,7 @@ For DW=16, N_SIZE=7, K_MAX=28, ACC_WIDTH=37:
 - Number of PEs: 7 × 7 = 49.
 - MAC operations per matrix: 7 × 7 × 28 = 1,372.
 - Input beats per matrix: 28.
-- At an assumed 100 MHz clock: 49 × 100 MHz = **4.9 GMAC/s** peak PE issue rate.
+- At an assumed 100 MHz clock: 49 × 100 MHz = **4.9 GMAC/s** peak PE issue rate, equivalent to **9.8 GOPS** when a multiply and an add are counted as two arithmetic operations.
 - At that same assumed clock: 100 MHz / 28 = **3.57 million matrices/s** ideal matrix rate.
 - Average output rate: 7 × 100 MHz / 28 = **25 million rows/s**, or 175 million result elements/s.
 
