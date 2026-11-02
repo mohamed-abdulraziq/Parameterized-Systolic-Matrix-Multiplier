@@ -72,9 +72,7 @@ module skew_network #(
                             b_pipe[k] <= '0;
                     end
                     else if (global_enable) begin
-
                         b_pipe[0] <= b_in[j];
-
                         for (k = 1; k < j; k = k + 1)
                             b_pipe[k] <= b_pipe[k-1];
                     end
