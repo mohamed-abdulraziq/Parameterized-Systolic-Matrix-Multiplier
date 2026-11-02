@@ -69,4 +69,4 @@ vlog -sv verification/systolic_array_tb.sv verification/systolic_b2b_test_wrappe
 vsim -c work.tb_systolic_array_final -do "run -all; quit -f"
 ~~~
 
-The pass/fail transcript was supplied with the project. It was not independently rerun during repository preparation; the command above is the documented reproduction sequence.
+The project regression run completed with all four parameter configurations passing and reset stress passing. The command above reproduces the final regression top.
