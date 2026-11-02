@@ -35,9 +35,13 @@ define_design_lib work -path $WORK_DIR
 set SS_LIB [file join $LIB_DIR $::env(SS_LIB_FILE)]
 set TT_LIB [file join $LIB_DIR $::env(TT_LIB_FILE)]
 set FF_LIB [file join $LIB_DIR $::env(FF_LIB_FILE)]
-set target_library [list $SS_LIB $TT_LIB $FF_LIB]
+# Synthesize against one characterized setup corner. Keep the other corners
+# available for linking; do not allow cells from different PVT corners to be
+# mixed in a single mapped netlist.
+set target_library [list $SS_LIB]
 set_app_var target_library $target_library
-set_app_var link_library [concat "*" $target_library]
+set_app_var link_library [concat "*" $SS_LIB $TT_LIB $FF_LIB]
+set_min_library $SS_LIB -min_version $FF_LIB
 set_app_var search_path [concat [get_app_var search_path] [list $RTL_DIR $LIB_DIR]]
 
 set rtl_files [list \
