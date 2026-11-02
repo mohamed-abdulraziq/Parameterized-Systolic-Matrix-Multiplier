@@ -1,0 +1,26 @@
+# Synopsys Design Compiler generated data
+work/
+synthesis/reports/generated/
+synthesis/netlists/
+synthesis/sdf/
+synthesis/sdc/
+synthesis/work/
+*.ddc
+*.svf
+*_mapped.v
+*.sdf
+*.sdc
+*.mr
+*.pvl
+*.syn
+*.db
+*.lib
+*.lef
+*.gds
+*.spf
+*.spef
+*.vcd
+*.wlf
+transcript
+vsim.wlf
+modelsim.ini
